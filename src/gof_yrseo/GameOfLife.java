@@ -87,7 +87,7 @@ public class GameOfLife {
 	            	}
 	            }
             	if(lineCnt < 2) {
-            		System.out.println("input file error occur. file lines under 2");
+            		System.out.println("input file error occur. file lines under 2.");
         			System.exit(-7);
             	}
             	if(lineCnt == 2 && cellCnt != cellCntChk) {
@@ -105,7 +105,7 @@ public class GameOfLife {
 	        int generation = 1;
 	        if(args.length == 2) {
 	        	if(isInteger(args[1]) == false) {
-	    			System.out.println("argument error: second argument has to be int");
+	    			System.out.println("argument error: second argument has to be int.");
 	    			System.exit(-13);
 	        	}else {
 	        		for(int i = 0 ; i < Integer.parseInt(args[1]); i ++) {
@@ -125,7 +125,7 @@ public class GameOfLife {
 	                    writer.flush();
 	                    System.out.println("success file dump: "+fileName);
 	                } catch(IOException e) {
-	                    System.out.println("error occur when file save");
+	                    System.out.println("error occur when file save.");
 	                    System.exit(-14);
 	                } finally {
 	                    try {
@@ -145,7 +145,7 @@ public class GameOfLife {
 		        }
 	        }
 		}else {
-			System.out.println("argument error: argument only has one or two");
+			System.out.println("argument error: argument only has one or two.");
 			System.exit(-12);
 		}
 
