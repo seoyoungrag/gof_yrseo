@@ -109,18 +109,57 @@ public class Board {
         }
     }
     public int neighboursCountAt(int row, int col) {
-        int sum=0;
-        //TODO 이웃의 개수는 8개, 현재셀을 5로 가정하고, 좌측하단이 1, 우측하단이 3, 좌측상단이 7, 우측상단이 9 순서대로 체크한다.
-        //TODO 체크할때 상태값을 확인해서 살아있는 세포의 합계값을 리턴한다.
-        //TODO 1
-        //TODO 2
-        //TODO 3        
-        //TODO 4
-        //5는 현재셀이라 체크하면 안된다.
-        //TODO 6
-        //TODO 7
-    	//TODO 8
-        //TODO 9
+    	int sum=0;
+        //이웃의 개수는 8개, 현재셀을 5로 가정하고, 좌측하단이 1, 우측하단이 3, 좌측상단이 7, 우측상단이 9 순서대로 체크한다.
+        //체크할때 상태값을 확인해서 살아있는 세포의 합계값을 리턴한다.
+        //1
+        if (row != 0 && col != 0){    
+            if(isAlive(row-1,col-1)){
+                sum++;
+            }
+        }
+        //2
+        if (row != 0){
+            if(isAlive(row-1,col)){ 
+            sum++;
+            }
+        }
+        //3        
+        if (row != 0 && col != width-1){
+            if(isAlive(row-1,col+1)){
+                sum++;
+            }
+        }
+        //4
+        if (col != 0){
+            if(isAlive(row,col-1)){ 
+            sum++;
+            }
+        }
+        //6
+        if (col != width-1){
+            if(isAlive(row,col+1)){ 
+                sum++;
+            }
+        }
+        //7
+        if (row != height-1 && col != 0){
+            if(isAlive(row+1,col-1)){ 
+                sum++;
+            }
+        }
+    	//8
+        if (row != height-1){
+            if(isAlive(row+1,col)){ 
+            sum++;
+            }
+        }
+        //9
+        if (row != height-1 && col != width-1){
+            if(isAlive(row+1,col+1)){
+                sum++;
+            }
+        }
 
         return sum;
     }
