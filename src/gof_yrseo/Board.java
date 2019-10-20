@@ -1,6 +1,7 @@
 package gof_yrseo;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class Board {
     private Cell[][] grid;
@@ -37,17 +38,58 @@ public class Board {
         }
     }
 
+    /**
+     * @param width
+     * @param height
+     * @param 랜덤시작시 보드의 각 셀이 살아있을 확률
+     */
+    public Board(int width, int height, ArrayList<String> indexOfCells) {
+    	//입력받은 가로, 세로 셀로 그리드를 생성한다.
+    	//랜덤시작할 경우 셀들을 임의로 초기화하는 값이 필요하다.
+        this.height=height;
+        this.width=width;
+        grid = new Cell[height][width];
+        
+        for (int h=0; h<grid.length; h++){
+            for (int w=0; w<grid[h].length; w++){
+                grid[h][w] = new Cell();
+            }
+        }
+        int x = 0;
+        int y = 0;
+        for (String indexOfCell : indexOfCells) {
+        	try {
+	        	x = Integer.parseInt(indexOfCell.split(",")[0]);
+	        	y = Integer.parseInt(indexOfCell.split(",")[1]);
+        	}catch(IndexOutOfBoundsException e1) {
+        		System.out.println("input file error occur: input cell location has to be int.");
+        		System.exit(-9);
+        	}catch(NumberFormatException e2) {
+        		System.out.println("input file error occur: input cell location has invalidate value.");
+        		System.exit(-10);
+        	}
+        	try {
+	            grid[x][y].setNewState(true);
+	            grid[x][y].updateState();
+        	}catch(IndexOutOfBoundsException e) {
+        		System.out.println("input file error occur: "+x+","+y+" cell is not exists in grid.");
+        		System.exit(-11);
+        	}
+        }
+    }
     public Cell[][] displayBoard() {
         String border = String.format("  +%0" + grid[0].length*2 + "d+", 0).replace("0","-"); //위아래 border를 그린다.
         DecimalFormat formatter = new DecimalFormat("00");
+        /*
         StringBuffer topNumbers = new StringBuffer("   ");
         for (int i = 1 ; i <= grid[0].length ; i ++) {
             String aFormatted = formatter.format(i);
             topNumbers.append(aFormatted);
         }
         System.out.println(topNumbers.toString());
+        */
         System.out.println(border);
-        int cntr=1;
+        int cntr=0;
         for (Cell[] row : grid) {
         	cntr++;
             String aFormatted = formatter.format(cntr);
