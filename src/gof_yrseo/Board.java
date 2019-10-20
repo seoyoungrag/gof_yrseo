@@ -77,12 +77,25 @@ public class Board {
      * GameOfLife 규칙에 따라 셀들에 새로운 상태 부여
      */
     private void checkCellState() {
-    	//TODO 아래 규칙대로 검증한다.
-    	//이웃셀들을 가져온다. neighboursCountAt
-    	//이웃에 살아있는 이웃이 2개 미만이면 underpopulation, exposure
-    	//이웃에 살아있는 이웃이 3개 초과하면 overpopulation, overcrowding
-    	//이웃에 살아있는 셀이 3개면 세포가 살아난다.
-    	//이웃의 2~3개의 세포가 살아있으면 세포는 유지된다.
+        for (int h=0; h<grid.length; h++){
+            for (int w=0; w<grid[h].length; w++){
+                int nr = neighboursCountAt(h,w); //이웃셀들을 가져온다. neighboursCountAt
+                if (nr < 2) { //이웃에 살아있는 이웃이 2개 미만이면 underpopulation, exposure 
+                	grid[h][w].setNewState(false);
+            	}  
+                else if (nr > 3) { //이웃에 살아있는 이웃이 3개 초과하면 overpopulation, overcrowding
+                	grid[h][w].setNewState(false);
+            	} 
+                else if (nr == 3) {  //이웃에 살아있는 셀이 3개면 세포가 살아난다.
+                	grid[h][w].setNewState(true);
+            	} 
+                else if (nr == 2) { //이웃의 2~3개의 세포가 살아있으면 세포는 유지된다.
+                	grid[h][w].setNewState(grid[h][w].getState());
+            	}else {
+            		System.out.println("발생할 수 없는 케이스: h: "+h+", w: "+w);
+            	}
+            }
+        }
     }
 
     /**
@@ -96,9 +109,20 @@ public class Board {
         }
     }
     public int neighboursCountAt(int row, int col) {
-    	//TODO 이웃에 생존한 셀이 몇개인지 계산해서 리턴한다.
-    	int sum = 0;
-    	return sum;
+        int sum=0;
+        //TODO 이웃의 개수는 8개, 현재셀을 5로 가정하고, 좌측하단이 1, 우측하단이 3, 좌측상단이 7, 우측상단이 9 순서대로 체크한다.
+        //TODO 체크할때 상태값을 확인해서 살아있는 세포의 합계값을 리턴한다.
+        //TODO 1
+        //TODO 2
+        //TODO 3        
+        //TODO 4
+        //5는 현재셀이라 체크하면 안된다.
+        //TODO 6
+        //TODO 7
+    	//TODO 8
+        //TODO 9
+
+        return sum;
     }
 
     public boolean isAlive(int row, int col) {
