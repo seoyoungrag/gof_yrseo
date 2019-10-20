@@ -23,7 +23,7 @@ public class GameOfLife {
 	            b.changeBoardCells();
 	            Thread.sleep(300);
 	        }
-		}else if(args.length == 1) {
+		}else if(args.length == 1 || args.length == 2) {
 			int width = 80;
 			int height = 40;
 			ArrayList<String> indexOfCells = new ArrayList<String>();
@@ -99,15 +99,33 @@ public class GameOfLife {
 	        }catch(IOException e){
 	            System.out.println("error occur when file reading: "+args[0]);
 	        }
-	        Board b = new Board(width, height, indexOfCells);
-	        b.displayBoard();
-	        while(true) {
-	        	b.displayBoard();
-	            b.changeBoardCells();
-	            Thread.sleep(300);
+        	Board b = new Board(width, height, indexOfCells);
+	        int generation = 1;
+	        if(args.length == 2) {
+	        	if(isInteger(args[1]) == false) {
+	    			System.out.println("argument error: second argument has to be int");
+	    			System.exit(-13);
+	        	}else {
+	        		for(int i = 0 ; i < Integer.parseInt(args[1]); i ++) {
+	        			System.out.println("[GENERATION] :"+generation);
+			            generation++;
+			        	b.displayBoard();
+			            b.changeBoardCells();
+			            Thread.sleep(300);
+	        		}
+	        	}
+	        }else {
+		        while(true) {
+        			System.out.println("[GENERATION] :"+generation);
+		            generation++;
+		        	b.displayBoard();
+		            b.changeBoardCells();
+		            Thread.sleep(300);
+		        }
 	        }
 		}else {
-			System.out.println("argument error: argument only has one.");
+			System.out.println("argument error: argument only has one or two");
+			System.exit(-12);
 		}
 
 	}
