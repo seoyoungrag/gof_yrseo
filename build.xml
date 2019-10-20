@@ -1,0 +1,31 @@
+<?xml version="1.0"?>   
+<project name="gof_yrseo" default="test" basedir=".">
+  <property name="main.build.dir" value="build" />  
+  <property name="main.src.dir" value="src" />
+
+  <path id="classpath.base" />
+
+  <target name="compile">
+    <mkdir dir="${main.build.dir}"/>
+    <javac srcdir="${main.src.dir}" destdir="${main.build.dir}" includeantruntime="false">
+      <classpath refid="classpath.base"/>
+    </javac>
+  </target>
+
+    <target name="jar" depends="compile">
+        <jar destfile="/gof.jar" basedir="${main.build.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="gof_yrseo.GameOfLife"></attribute>
+            </manifest>
+        </jar>
+    </target>
+   
+  <!-- delete all class files -->
+  <!-- To run this: use "ant clean" -->
+  <target name="clean">
+    <delete>
+        <fileset dir="${basedir}" includes="**/*.class" />
+    </delete>
+    <echo message="clean done" />
+  </target>
+</project>
