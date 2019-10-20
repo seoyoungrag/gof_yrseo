@@ -1,7 +1,9 @@
 Conway's Game of Life_YRSEO
 =========
 
-`Conway's Game of Life_YRSEO`은 [라이프게임](https://ko.wikipedia.org/wiki/%EB%9D%BC%EC%9D%B4%ED%94%84_%EA%B2%8C%EC%9E%84)의 내용을 토대로 JAVA CONSOLE OUTPUT으로 구현했습니다. random board state 실행, 아규먼트를 통해 파일을 읽어 board state을 preset형태로 실행을 지원합니다. 
+`Conway's Game of Life_YRSEO`은 [라이프게임](https://ko.wikipedia.org/wiki/%EB%9D%BC%EC%9D%B4%ED%94%84_%EA%B2%8C%EC%9E%84)의 내용을 토대로 JAVA CONSOLE OUTPUT으로 구현했습니다. 
+
+random board state 실행, 아규먼트를 통해 파일을 읽어 board state을 preset형태로 실행을 지원합니다. 
 
 ## Usage
 
@@ -66,6 +68,7 @@ https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.
 3. 설치 완료
 
 ## execute
+
 a.txt는 샘플파일이며, 샘플파일을 토대로 다른 preset을 생성할 수 있습니다.
 
 `$ java -jar gof.jar`
@@ -73,4 +76,14 @@ a.txt는 샘플파일이며, 샘플파일을 토대로 다른 preset을 생성�
 `$ java -jar gof.jar a.txt`
 
 `$ java -jar gof.jar a.txt 10`
+
+## Big-O
+
+주어진 width와 height가 각각 w, h 일때, 
+
+한번의 generation 당 아래의 복잡도를 갖습니다.
+
+시간복잡도: O(w*h*8)
+
+공간복잡도: O(w*h)
 
