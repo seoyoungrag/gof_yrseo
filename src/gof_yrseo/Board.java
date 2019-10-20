@@ -109,7 +109,40 @@ public class Board {
         System.out.println(border);
         return grid;
     }
-    
+
+    public String saveBoard() {
+    	StringBuffer rst = new StringBuffer();
+        String border = String.format("  +%0" + grid[0].length*2 + "d+", 0).replace("0","-")+"\n"; //위아래 border를 그린다.
+        DecimalFormat formatter = new DecimalFormat("00");
+        /*
+        StringBuffer topNumbers = new StringBuffer("   ");
+        for (int i = 1 ; i <= grid[0].length ; i ++) {
+            String aFormatted = formatter.format(i);
+            topNumbers.append(aFormatted);
+        }
+        System.out.println(topNumbers.toString());
+        */
+        rst.append(border);
+        int cntr=0;
+        for (Cell[] row : grid) {
+        	cntr++;
+            String aFormatted = formatter.format(cntr);
+            rst.append(aFormatted);
+            String r = "|";
+            //int cnt = 0;
+            for (Cell c : row) {
+                r += c.getState() ? "* " : "  ";
+                //cnt++;
+            }
+            r += "|";
+            rst.append(r+"\n");
+            //System.out.print(r);
+            //System.out.println(cnt+"\n");
+        }
+        rst.append(border+"\n");
+        return rst.toString();
+    	
+    }
     public int getSize() {
         return width;
     }

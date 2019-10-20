@@ -1,8 +1,10 @@
 package gof_yrseo;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -107,12 +109,31 @@ public class GameOfLife {
 	    			System.exit(-13);
 	        	}else {
 	        		for(int i = 0 ; i < Integer.parseInt(args[1]); i ++) {
-	        			System.out.println("[GENERATION] :"+generation);
-			            generation++;
-			        	b.displayBoard();
+	        			//System.out.println("[GENERATION] :"+generation);
+			            //generation++;
+			        	//b.displayBoard();
 			            b.changeBoardCells();
-			            Thread.sleep(300);
-	        		}
+			            //Thread.sleep(300);
+	        		}        
+	        		String fileName = "result.txt";
+	                File file = new File(fileName);
+	                FileWriter writer = null;
+	                try {
+	                    // 기존 파일의 내용에 이어서 쓰려면 true를, 기존 내용을 없애고 새로 쓰려면 false를 지정한다.
+	                    writer = new FileWriter(file, true);
+	                    writer.write(b.saveBoard());
+	                    writer.flush();
+	                    System.out.println("success file dump: "+fileName);
+	                } catch(IOException e) {
+	                    System.out.println("error occur when file save");
+	                    System.exit(-14);
+	                } finally {
+	                    try {
+	                        if(writer != null) writer.close();
+	                    } catch(IOException e) {
+	                        e.printStackTrace();
+	                    }
+	                }
 	        	}
 	        }else {
 		        while(true) {
