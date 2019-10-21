@@ -48,12 +48,12 @@ public class GameOfLife {
 		            			System.out.println("argument in file error - first line,width height has to be int.");
 		            			System.exit(-2);
 	            			}
-	            			if(Integer.parseInt(widthHeight[0]) <80  || Integer.parseInt(widthHeight[1]) <40) {
+	            			if(Integer.parseInt(widthHeight[1]) <80  || Integer.parseInt(widthHeight[0]) <40) {
 		            			System.out.println("argument in file error - need to 'width >=80, height >=40'");
 		            			System.exit(-3);
 	            			}
-	            			width = Integer.parseInt(widthHeight[0]);
-	            			height = Integer.parseInt(widthHeight[1]);
+	            			width = Integer.parseInt(widthHeight[1]);
+	            			height = Integer.parseInt(widthHeight[0]);
 	            			lineCnt++;
 	            		}
 	            		continue;
@@ -76,13 +76,15 @@ public class GameOfLife {
 	            	}
             		//세번째 라인 체크
 	            	if(lineCnt == 2 && line != null) {
-	            		cellCntChk++;
 	            		String indexOfCellsStr = line.trim();
 	            		if(indexOfCellsStr==null) {
 	            			System.out.println("argument in file error - thrid line only has cell's index.");
 	            			System.exit(-6);
 	            		}else {
-	            			indexOfCells.add(indexOfCellsStr);
+	            			if(indexOfCellsStr.length() !=0 ) {
+	    	            		cellCntChk++;
+		            			indexOfCells.add(indexOfCellsStr);	
+	            			}
 	            		}
 	            	}
 	            }

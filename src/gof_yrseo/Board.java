@@ -59,8 +59,8 @@ public class Board {
         int y = 0;
         for (String indexOfCell : indexOfCells) {
         	try {
-	        	x = Integer.parseInt(indexOfCell.split(",")[0]);
-	        	y = Integer.parseInt(indexOfCell.split(",")[1]);
+	        	x = Integer.parseInt(indexOfCell.split(" ")[0]);
+	        	y = Integer.parseInt(indexOfCell.split(" ")[1]);
         	}catch(IndexOutOfBoundsException e1) {
         		System.out.println("input file error occur: input cell location has to be int.");
         		System.exit(-9);
