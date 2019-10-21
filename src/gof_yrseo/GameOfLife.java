@@ -100,8 +100,10 @@ public class GameOfLife {
 	            bufReader.close();
 	        }catch (FileNotFoundException e) {
 	            System.out.println(args[0]+ " file not found.");
+                System.exit(-15);
 	        }catch(IOException e){
 	            System.out.println("error occur when file reading: "+args[0]);
+                System.exit(-16);
 	        }
         	Board b = new Board(width, height, indexOfCells);
 	        int generation = 1;
@@ -119,6 +121,9 @@ public class GameOfLife {
 	        		}        
 	        		String fileName = "result.txt";
 	                File file = new File(fileName);
+	                if(file.exists()) {
+	                	file.delete();
+	                }
 	                FileWriter writer = null;
 	                try {
 	                    // 기존 파일의 내용에 이어서 쓰려면 true를, 기존 내용을 없애고 새로 쓰려면 false를 지정한다.
