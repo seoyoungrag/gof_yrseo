@@ -49,6 +49,10 @@ argument error: second argument has to be int.(-13)
 
 error occur when file save.(-14)
 
+file not found.(-15)
+
+error occur when file reading.(-16)
+
 오류 발생시 위 오류코드로 문의 주세요.
 
 ## Installation(ubuntu)
